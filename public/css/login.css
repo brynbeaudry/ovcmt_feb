@@ -1,0 +1,19 @@
+.panel-heading {
+    padding: auto;
+    text-align: center;
+}
+
+.panel-footer {
+    padding: 1px 15px;
+    color: #A0A0A0;
+}
+
+.logo {
+    width: 400px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 40px;
+    border-radius: 2%;
+
+
+}

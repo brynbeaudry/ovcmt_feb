@@ -1,0 +1,176 @@
+@media print {
+	
+	/*
+	 * .redfunction  == class=""
+	 * #bluefunction == id=""
+	 */
+    html body * {
+        visibility: hidden;
+    }
+
+    header nav, footer {
+        display:none;
+    }
+	
+	/* Use this in div,ul,td, etc to not show for your Print button PDFtoHTML */
+    .tohide {
+        display:none;
+    }
+	
+	.sidenav {
+		display:none;
+	}
+	
+	
+	.drag_course_offering_list {
+		display:none;
+	}
+    .print-view {
+        display:inline-block;
+        height: auto;
+    }
+
+    #page-title {
+        display: none;
+    }
+
+    #print-title {
+      visibility: visible;
+      display: inline;
+      position: absolute;
+      top: 0px;
+      left : 0px;
+    }
+
+    #app > nav {
+        display : none;
+    }
+
+    /*#pdf2htmldiv > div {
+      display: none;
+    }*/
+	
+	/****************************************
+	 *  dragDrop.blade.php Print Button CSS *
+	 ****************************************/
+	#drag_schedule_table, #drag_schedule_table * {
+        visibility: visible;
+    }
+	
+	#drag_schedule_table{
+		table-layout:inherit;
+	}
+
+	/* This adjust the height of the parent cell */
+	#drag_schedule_table td {
+		height: 10em;
+	}
+	
+	/* This adjusts the top part of the course box height */
+	#drag_schedule_table td div{
+		height: 1em;
+	}
+	
+	#drag_schedule_table td span {
+		vertical-align:top;
+		text-align:    left;
+		float:         left;
+	}
+	
+	#drag_schedule_table td div div.panel {
+		height:500;
+		padding-top:1px;
+		padding-bottom:1px;
+	}
+
+	#drag_schedule_table td div div.panel div.panel-heading {
+		height:1.5em;
+		padding-top:0px;
+		padding-bottom:0px;
+		/*color:white;*/
+	}
+
+	#drag_schedule_table div.panel-heading {
+		visibility: visible;
+		display: block;
+	}
+	
+	/**************************************************
+	 *  scheduleinstructor.blade.php Print Button CSS *
+	 **************************************************/
+	
+	/* This creates the border for the cells including days(MTWTFSS) 
+	   and number days(1,2,3..) */
+	#schedule_view_table, #schedule_view_table * {
+        visibility: visible;
+    }
+	
+    #schedule_view_table {
+      position: absolute;
+      top:      100px;
+      left :    0px;
+    }
+	
+	#schedule_view_table {
+		table-layout:inherit;
+	}
+	
+	#schedule_view_table td {
+		height: 10em;
+	}
+	
+	#schedule_view_table td div{
+		height: 5em;
+	}
+
+	#schedule_view_table td span {
+		vertical-align: top;
+		text-align:left;
+		float:left;
+	}
+
+	  #schedule_view_table td div div.panel {
+		  height:auto;
+		  padding-top:1px;
+		  padding-bottom:1px;
+	  }
+
+	  #schedule_view_table td div div.panel div.panel-heading {
+		  height:1.5em;
+		  padding-top:0px;
+		  padding-bottom:0px;
+		  /*color:white;*/
+	  }
+
+	  #schedule_view_table div.panel-heading {
+		visibility: visible;
+		display: block;
+	  }
+
+	  /*In chrome */
+	  body {
+	  -webkit-print-color-adjust: exact;
+	  }
+
+	  #schedule_view_table td div div.panel div.panel-body {
+		  height:3.5em;
+		  padding : 0px;
+	  }
+
+	  .am{
+		height:auto;
+	  }
+	  .pm{
+		height: auto;
+	  }
+
+	  .schedule_day_of_month {
+		  font-size: 20px;
+		  width:25px;
+		  height:20px;
+		  color: white;
+		  text-align:center;
+		  background-color: black;
+		  z-index: 100;
+	  }
+}

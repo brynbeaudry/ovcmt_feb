@@ -1,0 +1,68 @@
+#drag_schedule_table {
+    table-layout: fixed;
+    width:100%;
+}
+
+.drag_schedule_row_head {
+    white-space: nowrap;
+    width:75px;
+}
+
+.drag_schedule_row td {
+    width: 150px;
+    height:90px;
+}
+
+.drag_course_offering_item {
+  width: auto;
+    height: 90px;
+    margin-bottom: 0;
+    display: block;
+}
+
+.drag_course_offering .panel-heading {
+    color:white;
+    text-align: center;
+}
+
+.drag_course_offering .panel-heading:hover {
+    color:black;
+}
+
+.drag_course_offering_panel {
+  padding-top: 0.1em;
+    font-size: .9em;
+    font-weight: 700;
+    text-align: center;
+    padding: 0px;
+}
+.drag_course_listing .panel {
+    height:100px;
+}
+.drag_course_listing .panel-body{
+    height:50px;
+}
+
+.drag_course_offering_list {
+    min-height: 300px;
+}
+
+.introSidebar > li > a {
+    background-color: #5bc0de;
+    color: white;
+}
+
+.introSidebar > li > a:hover {
+    background-color: #f1f1f1;
+    color: #337ab7;
+}
+
+.sidebar > li > a:hover {
+    background-color: #f1f1f1;
+    color: #337ab7;
+}
+
+.sidebar > li > a {
+    background-color: #337ab7;
+    color: white;
+}

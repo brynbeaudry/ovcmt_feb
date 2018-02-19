@@ -1,0 +1,74 @@
+#schedule_view_table {
+    table-layout:fixed;
+}
+
+/*Adjusts the the height of each parent cell in Schedule*/
+#schedule_view_table td {
+    height:200px;
+}
+
+/*In each day cell, they're 2 subcells(invisible to see)*/
+/*Adjusts the the height of the subcells in Schedule NOT the parent cell */
+#schedule_view_table td div{
+    height:100px;
+}
+
+.print-view {
+  display: none;
+  height : 0px;
+}
+/*Users title. Ex: Clauda's Schedule*/
+#schedule-title {
+  float: right;
+}
+
+/*displays nothing for any tags using this method*/
+#print-title {
+  display: none;
+}
+
+/*Cell's num days formatting. WORKING W/ .schedule_day_of_month */
+#schedule_view_table td span {
+    vertical-align: top;
+    text-align:center;
+    float:left;
+}
+/* This adjust the white sub-cells. Ex: Time:PM/Room:P1 Area*/ 
+/* White square subcells will hide behind overlapped sub-cells */
+#schedule_view_table td div div.panel {
+    height:90px;
+    padding-top:3px;
+    padding-bottom:3px;
+}
+
+/*Schedules Course Title. Example CTP1,CTP2*/
+#schedule_view_table td div div.panel div.panel-heading {
+    height:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+    color:white;
+}
+/*Schedules Course Title Hovering effect with mouse*/
+#schedule_view_table td div div.panel div.panel-heading:hover {
+    color:black;
+}
+
+/* From testing, this method doesnt do anything */
+#schedule_view_table td div div.panel div.panel-body {
+    height:70px;
+	/*default: 70px*/
+}
+
+/*Schedules date. Top left corner of each cell*/
+.schedule_day_of_month {
+    font-size: 20px;
+    width:25px;
+    height:25px;
+    color: white;
+    text-align:center;
+    background-color: black;
+}
+
+.noBorder {
+    border:none !important;
+}

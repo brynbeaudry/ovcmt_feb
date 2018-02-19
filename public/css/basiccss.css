@@ -1,0 +1,102 @@
+
+.row.content {
+    height: 100%;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    background-color: #f1f1f1;
+    height: 700px;
+}
+
+/* Set black background color, white text and some padding, set position fixed to bottom*/
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+footer > div {
+    text-align: center;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: 100%;
+        padding: 25px;
+    }
+    .row.content {height: auto;}
+}
+
+#footerLinks {
+    color: white;
+}
+
+table {
+    border: 1px solid black;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    padding: 1px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+.content {
+    min-height: 100%;
+    margin: 0 auto -50px;
+}
+.footer,
+.push {
+    height: 50px;
+}
+
+#editCourseBtn {
+    width: 75px;
+}
+
+#closeEditCourseBtn {
+    width: 75px;
+}
+
+#addNewCourse {
+    width: 600px;
+}
+
+#addNewInstructor{
+    width :600px;
+}
+
+.panel-heading.color-panel {
+    color: white;
+}
+.panel-heading.color-panel:hover {
+    color: black;
+}
+
+.instructions_list {
+    list-style-type:none;
+}
+
+.instructions_set img {
+    max-width:800px;
+    max-height:500px;
+}
+
+
+

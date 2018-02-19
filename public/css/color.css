@@ -1,0 +1,6 @@
+.panel-heading {
+    color: white !important;
+}
+.panel-heading:hover {
+    color: black !important;
+}
