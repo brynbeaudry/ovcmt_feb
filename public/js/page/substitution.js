@@ -14,6 +14,7 @@
 var coursesToSub = new cts();*/
 
 var coursesToSub = null;
+var isOneDay = false 
 
 
 
@@ -197,7 +198,7 @@ $('#instructorSelect option').click(function(event) {
 /*1st Action*/
 $('div.modal-body input, div.modal-body select').on('change', function(){
   var start_date = $("#modal_substitution_start_date").val();
-  var end_date = $('#modal_substitution_end_date').val();
+  var end_date = (isOneDay)? $("#modal_substitution_start_date").val() : $('#modal_substitution_end_date').val();
   var instructor_id = $('#instructorSelect').val();
 
   //console.log(start_date +'|'+end_date +'|'+ instructor_id);
@@ -299,3 +300,18 @@ $('button.removeSubstitution').click(function(event) {
   coursesToSub.splice(id, 1)
 });
 
+/* Show and hide the end date items */
+
+$('#modal_substitution_isOneDay:checkbox').change(function(){
+  if(this.checked){
+    /* hide the the end date portion and set the end date to the start date */
+    console.log('This is checked');
+    $('#modal_substitution_end_date_div').hide()
+    isOneDay = true
+  }else{
+    /*  show the end date portion and set the end date to nothing */
+    console.log('This is not checked');
+    $('#modal_substitution_end_date_div').show()
+    isOneDay = false
+  }
+})

@@ -114,13 +114,15 @@
                                     {!! Form::label('modal_substitution_start_date', 'Substitution Start Date:', ['class'=>'control-label']) !!}
                                     {!! Form::date('modal_substitution_start_date', '', array('id'=>'modal_substitution_start_date',
                                             'class'=>'form-control')) !!}
+                                    {!! Form::label('modal_substitution_isOneDay', 'Just one day:', ['class'=>'control-label']) !!}
+                                    {!!  Form::checkbox('modal_substitution_isOneDay', '', false)   !!}
                                 </div>
-                                <div class="form-group has-danger">
+                                <div class="form-group" id='modal_substitution_end_date_div'>
                                     {!! Form::label('modal_substitution_end_date', 'Substitution End Date:', ['class'=>'control-label']) !!}
                                     {!! Form::date('modal_substitution_end_date', '', array('id'=>'modal_substitution_end_date',
                                             'class'=>'form-control')) !!}
-                                    <p class="text-danger" id="end_date_error"></p>
                                 </div>
+                                <p class="text-danger" id="end_date_error"></p>
                                 <!--Drop down menu -->
 
                             </div>
