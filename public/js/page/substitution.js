@@ -120,6 +120,27 @@ function createSubstituteDropDown(el){
     label.classList.add('control-label');
     substitution.insertBefore(label,substitution.childNodes[0]);
 
+  var deleteButton = document.createElement('button')
+    deleteButton.classList.add('btn')
+    deleteButton.classList.add('btn-danger')
+    deleteButton.classList.add('btn-xs')
+    deleteButton.classList.add('float-right')
+    deleteButton.classList.add('removeSubstitution')
+    let xText = document.createTextNode('x')
+    deleteButton.appendChild(xText)
+    deleteButton.id = crsindex
+    substitution.insertBefore(deleteButton,substitution.childNodes[1]);
+    deleteButton.onclick = () => {
+      /* Act on the event */
+        let id = crsindex
+        console.log(`In remove Substitution, removing index ${id}`);
+        /* Remove the substitution select div from the modal's dom */
+        let nodeToRemove = $(`#${id}.form-group.substitution-group`)
+        nodeToRemove.remove()
+        /* Remove the actual substitution information from the courses to sub */
+        coursesToSub.splice(id, 1)
+    }
+
   var error = document.createElement("p");
   error.classList.add('text-danger');
   error.id = "errorSub_" + crsindex;
@@ -265,3 +286,16 @@ $('button.delete').click(function(event) {
     location.reload();
   }).fail(function(e){console.log(e.responseText);});
 });
+
+/*Remove Substitution by id*/
+$('button.removeSubstitution').click(function(event) {
+  /* Act on the event */
+  let id = $(this).attr('id')
+  console.log(`In remove Substitution, removing index ${id}`);
+  /* Remove the substitution select div from the modal's dom */
+  let nodeToRemove = $(`#${id}.form-group.substitution-group`)
+  nodeToRemove.remove()
+  /* Remove the actual substitution information from the courses to sub */
+  coursesToSub.splice(id, 1)
+});
+

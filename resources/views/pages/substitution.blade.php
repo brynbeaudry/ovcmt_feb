@@ -20,6 +20,9 @@
     border-radius: 50%;
     border: 0;
   }
+  .float-right {
+    float : right;
+  }
 </style>
     <div class="container-fluid">
         <div class="row content">
