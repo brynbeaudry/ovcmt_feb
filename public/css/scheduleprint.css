@@ -5,7 +5,8 @@
 	 * #bluefunction == id=""
 	 */
     html body * {
-        visibility: hidden;
+		visibility: hidden;
+		border-collapse: separate;
     }
 
     header nav, footer {
