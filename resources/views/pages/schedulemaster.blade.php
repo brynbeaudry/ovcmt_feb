@@ -1,6 +1,11 @@
 @extends('layouts.viewscheduleapp')
 
 @section('content')
+    <style>
+        .intake-courses-heading {
+            display : inline;
+        }
+    </style>
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-2 sidenav tohide">
@@ -101,7 +106,7 @@
                                                 @foreach($courses as $key => $intakeCourses)
                                                 <tr class="intake{{$key}}">
                                                     <td class="noBorder">
-                                                        <strong>{{$intakeCourses['intake_name']}}</strong>
+                                                        <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
                                                         <div class="am"></div>
                                                         <div class="pm"></div>
                                                     </td>
@@ -121,7 +126,7 @@
                                                 @foreach($courses as $key => $intakeCourses)
                                                 <tr class="intake{{$key}}">
                                                     <td class="noBorder">
-                                                        <strong>{{$intakeCourses['intake_name']}}</strong>
+                                                        <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
                                                         <div class="am"></div>
                                                         <div class="pm"></div>
                                                     </td>
@@ -143,7 +148,7 @@
                                                 @foreach($courses as $key => $intakeCourses)
                                                 <tr class="intake{{$key}}">
                                                     <td class="noBorder">
-                                                        <strong>{{$intakeCourses['intake_name']}}</strong>
+                                                        <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
                                                         <div class="am"></div>
                                                         <div class="pm"></div>
                                                     </td>
