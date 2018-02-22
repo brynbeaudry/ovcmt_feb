@@ -5,6 +5,36 @@
         .intake-courses-heading {
             display : inline;
         }
+        .print-day-of-month {
+            display: none;
+        }
+        @media print {
+            .print-day-of-month {
+                display: inline;
+            }
+
+            .first-week{
+                
+            }
+
+            .middle-week{
+                /* display: block; page-break-before: always; */
+            }
+
+            #schedule_view_table {
+                page-break-inside:auto;
+            }
+
+            div.intake-courses-heading {
+                color : red;
+            }
+
+            #schedule_view_table td span{
+                margin-bottom: 0;
+                line-height: .5;
+            }
+
+        }
     </style>
     <div class="container-fluid">
         <div class="row content">
@@ -92,74 +122,78 @@
                     </thead>
                     <tbody>
                     @for($i=0; $i<sizeof($weeks);$i++)
-                        <tr class="schedule_wk_{{$i}}">
+                        <tr class="schedule_wk_{{$i}} {{ ($i>0)? 'middle-week' : 'first-week'}}">
                             <!-- first row -->
-                            @if($i==0)
-                                @for($j=0; $j<5-sizeof($weeks[$i]); $j++)
-                                    <td></td>
-                                @endfor
-                                @for($j=0; $j<sizeof($weeks[$i]); $j++)
-                                    <td>
-                                        <span class="schedule_day_of_month">{{$weeks[$i][$j]}}</span>
-                                        <table class="schedule_day_table noBorder">
-                                            <tbody>
-                                                @foreach($courses as $key => $intakeCourses)
-                                                <tr class="intake{{$key}}">
-                                                    <td class="noBorder">
-                                                        <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
-                                                        <div class="am"></div>
-                                                        <div class="pm"></div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                @endfor
-                            <!-- last row -->
-                            @elseif($i == sizeof($weeks)-1)
-                                @for($j=0; $j<sizeof($weeks[$i]); $j++)
-                                    <td>
-                                        <span class="schedule_day_of_month">{{$weeks[$i][$j]}}</span>
-                                        <table class="schedule_day_table noBorder">
-                                            <tbody>
-                                                @foreach($courses as $key => $intakeCourses)
-                                                <tr class="intake{{$key}}">
-                                                    <td class="noBorder">
-                                                        <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
-                                                        <div class="am"></div>
-                                                        <div class="pm"></div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                @endfor
-                                @for($j=0; $j<5-sizeof($weeks[$i]);$j++)
-                                    <td></td>
-                                @endfor
-                            @else
-                                @for($j=0; $j<5; $j++)
-                                    <td>
-                                        <span class="schedule_day_of_month">{{$weeks[$i][$j]}}</span>
-                                        <table class="schedule_day_table noBorder">
-                                            <tbody>
-                                                @foreach($courses as $key => $intakeCourses)
-                                                <tr class="intake{{$key}}">
-                                                    <td class="noBorder">
-                                                        <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
-                                                        <div class="am"></div>
-                                                        <div class="pm"></div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                @endfor
-                            @endif
+                            <div>
+                                @if($i==0)
+                                        @for($j=0; $j<5-sizeof($weeks[$i]); $j++)
+                                            <td></td>
+                                        @endfor
+                                        @for($j=0; $j<sizeof($weeks[$i]); $j++)
+                                            <td>
+                                                <span class="schedule_day_of_month">{{$weeks[$i][$j]}}</span>
+                                                <table class="schedule_day_table noBorder">
+                                                    <tbody>
+                                                        @foreach($courses as $key => $intakeCourses)
+                                                        <tr class="intake{{$key}}">
+                                                            <td class="noBorder">
+                                                                <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
+                                                                <div class="am"></div>
+                                                                <div class="pm"></div>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        <tr style="height: 0; page-break-after : always"></tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        @endfor
+                                <!-- last row -->
+                                @elseif($i == sizeof($weeks)-1)
+                                    @for($j=0; $j<sizeof($weeks[$i]); $j++)
+                                        <td>
+                                            <span class="schedule_day_of_month">{{$weeks[$i][$j]}}</span>
+                                            <table class="schedule_day_table noBorder">
+                                                <tbody>
+                                                    @foreach($courses as $key => $intakeCourses)
+                                                    <tr class="intake{{$key}}">
+                                                        <td class="noBorder">
+                                                            <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
+                                                            <div class="am"></div>
+                                                            <div class="pm"></div>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    @endfor
+                                    @for($j=0; $j<5-sizeof($weeks[$i]);$j++)
+                                        <td></td>
+                                    @endfor
+                                @else
+                                    @for($j=0; $j<5; $j++)
+                                        <td>
+                                            <span class="schedule_day_of_month">{{$weeks[$i][$j]}}</span>
+                                            <table class="schedule_day_table noBorder">
+                                                <tbody>
+                                                    @foreach($courses as $key => $intakeCourses)
+                                                    <tr class="intake{{$key}}">
+                                                        <td class="noBorder">
+                                                            <div class="intake-courses-heading"><strong>{{$intakeCourses['intake_name']}}</strong></div>
+                                                            <div class="am"></div>
+                                                            <div class="pm"></div>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    @endfor
+                                @endif
+                            </div>
                         </tr>
+                        <tr style="height: 0; page-break-after : always"></tr>
                     @endfor
                     </tbody>
                 </table>
@@ -223,6 +257,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+    
+    </script>
 
 
     <!--<script type="text/javascript">
