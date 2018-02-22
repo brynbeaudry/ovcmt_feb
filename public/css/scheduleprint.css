@@ -122,10 +122,12 @@
 	
 	#schedule_view_table td {
 		height: 10em;
+		width: 1em;
 	}
 	
 	#schedule_view_table td div{
 		height: 5em;
+		width: 10em;
 	}
 
 	#schedule_view_table td span {
