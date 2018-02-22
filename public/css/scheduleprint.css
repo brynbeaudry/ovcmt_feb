@@ -145,6 +145,7 @@
 		  padding-top:0px;
 		  padding-bottom:0px;
 		  /*color:white;*/
+		  overflow-y: hidden;
 	  }
 
 	  #schedule_view_table div.panel-heading {
