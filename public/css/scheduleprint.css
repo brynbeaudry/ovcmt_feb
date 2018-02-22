@@ -123,10 +123,11 @@
 	#schedule_view_table td {
 		height: 10em;
 		width: 1em;
+		padding-bottom: 1px;
 	}
 	
 	#schedule_view_table td div{
-		height: 5em;
+		height: 5.5em;
 		width: 10em;
 	}
 
@@ -134,12 +135,16 @@
 		vertical-align: top;
 		text-align:left;
 		float:left;
+		margin-bottom: 3px;
 	}
 
 	  #schedule_view_table td div div.panel {
 		  height:auto;
-		  padding-top:1px;
-		  padding-bottom:1px;
+		  padding-top: 12px;
+		  padding-bottom: 0px;
+		  border-top-color: white;
+			border-left-color: white;
+			border-right-color: white;
 	  }
 
 	  #schedule_view_table td div div.panel div.panel-heading {
