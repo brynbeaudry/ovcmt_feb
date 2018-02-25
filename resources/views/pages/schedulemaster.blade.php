@@ -18,11 +18,19 @@
             }
 
             .middle-week{
-                /* display: block; page-break-before: always; */
+               /* display: block; page-break-before: always; */
+            }
+
+            .schedule_wk_4 {
+                page-break-before: always;
+                overflow-y : visible;
             }
 
             #schedule_view_table {
                 page-break-inside:auto;
+                border-collapse : separate!important;
+                overflow-y : visible;
+                margin: 0;
             }
 
             div.intake-courses-heading {
@@ -124,7 +132,6 @@
                     @for($i=0; $i<sizeof($weeks);$i++)
                         <tr class="schedule_wk_{{$i}} {{ ($i>0)? 'middle-week' : 'first-week'}}">
                             <!-- first row -->
-                            <div>
                                 @if($i==0)
                                         @for($j=0; $j<5-sizeof($weeks[$i]); $j++)
                                             <td></td>
@@ -143,7 +150,6 @@
                                                             </td>
                                                         </tr>
                                                         @endforeach
-                                                        <tr style="height: 0; page-break-after : always"></tr>
                                                     </tbody>
                                                 </table>
                                             </td>
@@ -191,12 +197,12 @@
                                         </td>
                                     @endfor
                                 @endif
-                            </div>
                         </tr>
                         <tr style="height: 0; page-break-after : always"></tr>
                     @endfor
                     </tbody>
                 </table>
+                <tr style="height: 0; page-break-after : always"></tr>
                 @foreach($courses as $intakeid => $intakecourses)
                     @foreach($intakecourses['am_courses'] as $amcourse)
                         <script>
