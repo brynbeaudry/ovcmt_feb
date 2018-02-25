@@ -17,7 +17,7 @@
                 
             }
 
-            .middle-week{
+            .middle-week {
                /* display: block; page-break-before: always; */
             }
 
@@ -40,6 +40,14 @@
             #schedule_view_table td span{
                 margin-bottom: 0;
                 line-height: .5;
+            }
+
+            #schedule_view_table td div div.panel {
+                margin : 0;
+            }
+
+            #schedule_view_table td {
+                
             }
 
         }
