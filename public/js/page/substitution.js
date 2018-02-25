@@ -140,6 +140,15 @@ function createSubstituteDropDown(el){
         nodeToRemove.remove()
         /* Remove the actual substitution information from the courses to sub */
         coursesToSub.splice(id, 1)
+        $('div.form-group.substitution-group').each(function(idx,el){
+          el.id = idx
+        })
+        $('select.form-control.sub-select').each(function(idx,el){
+          el.id = `selectSub_${idx}`
+        })
+        $('div.form-group.substitution-group label.control-label').each(function(idx,el){
+          $(el).attr('for', `selectSub_${idx}`)
+        })
     }
 
   var error = document.createElement("p");
@@ -298,6 +307,12 @@ $('button.removeSubstitution').click(function(event) {
   nodeToRemove.remove()
   /* Remove the actual substitution information from the courses to sub */
   coursesToSub.splice(id, 1)
+  $('select.sub-select').each(function(el, idx){
+      console.log(`in delete : start id ${el.id}`)
+      el.id = `selectSub_${idx}`
+      console.log(`to ${el.id}`)
+  })
+  console.log(JSON.stringify.coursesToSub)
 });
 
 /* Show and hide the end date items */
@@ -315,3 +330,4 @@ $('#modal_substitution_isOneDay:checkbox').change(function(){
     isOneDay = false
   }
 })
+
