@@ -49,8 +49,16 @@ function createPanelBody(room_id, time)
     var PanelBody = document.createElement('DIV');
     PanelBody.className=['panel-body'];
     //PanelBody.append(document.createElement('BR'));
-    PanelBody.append(document.createElement('P').appendChild(document.createTextNode("Time: " + time)));
+    var timeParagraph = document.createElement('P')
+    var timeText = document.createTextNode("Time: " + time)
+    timeParagraph.appendChild(timeText)
+    PanelBody.appendChild(timeParagraph)
+    var roomParagraph = document.createElement('P')
+    var roomText = document.createTextNode("Room: " + room_id)
+    roomParagraph.appendChild(roomText)
+    PanelBody.appendChild(roomParagraph)
+    /* PanelBody.append(document.createElement('P').appendChild(document.createTextNode("Time: " + time)));
     PanelBody.append(document.createElement('BR'));
-    PanelBody.append(document.createElement('P').appendChild(document.createTextNode("Room: " + room_id)));
+    PanelBody.append(document.createElement('P').appendChild(document.createTextNode("Room: " + room_id))); */
     return PanelBody;
 }

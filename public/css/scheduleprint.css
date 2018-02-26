@@ -49,7 +49,12 @@
 
     #app > nav {
         display : none;
-    }
+	}
+	
+	.panel-body p {
+		line-height: 1.5em;
+		margin : auto;
+	}
 
     /*#pdf2htmldiv > div {
       display: none;

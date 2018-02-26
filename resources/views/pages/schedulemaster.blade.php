@@ -14,7 +14,15 @@
             }
 
             .first-week{
-                
+                page-break-inside : auto;
+            }
+
+            .am {
+
+            }
+
+            .pm {
+
             }
 
             .middle-week {
@@ -33,21 +41,26 @@
                 margin: 0;
             }
 
-            div.intake-courses-heading {
-                color : red;
-            }
 
             #schedule_view_table td span{
                 margin-bottom: 0;
                 line-height: .5;
             }
 
-            #schedule_view_table td div div.panel {
-                margin : 0;
+            #schedule_view_table td div div.panel div.panel-body {
+            }
+
+            .schedule_day_table {
+
             }
 
             #schedule_view_table td {
-                
+
+            }
+
+            #schedule_view_table td div div.panel.panel-default {
+                padding : 0;
+                margin : 0;
             }
 
         }

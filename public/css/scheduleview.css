@@ -72,3 +72,7 @@
 .noBorder {
     border:none !important;
 }
+
+.panel-body p {
+    margin: auto;
+}
