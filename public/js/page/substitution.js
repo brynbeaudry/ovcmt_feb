@@ -53,7 +53,7 @@ function postSubstitutions(){
   if(coursesToSub!==null){
     for (var i = 0; i < coursesToSub.length; i++) {
       coursesToSub[i].start_date = $('#modal_substitution_start_date').val();
-      coursesToSub[i].end_date = $('#modal_substitution_end_date').val();
+      coursesToSub[i].end_date = (isOneDay) ? $('#modal_substitution_start_date').val() : $('#modal_substitution_end_date').val();
     }
     console.log(coursesToSub);
   return $.ajax({
@@ -137,18 +137,9 @@ function createSubstituteDropDown(el){
         console.log(`In remove Substitution, removing index ${id}`);
         /* Remove the substitution select div from the modal's dom */
         let nodeToRemove = $(`#${id}.form-group.substitution-group`)
-        nodeToRemove.remove()
         /* Remove the actual substitution information from the courses to sub */
         coursesToSub.splice(id, 1)
-        $('div.form-group.substitution-group').each(function(idx,el){
-          el.id = idx
-        })
-        $('select.form-control.sub-select').each(function(idx,el){
-          el.id = `selectSub_${idx}`
-        })
-        $('div.form-group.substitution-group label.control-label').each(function(idx,el){
-          $(el).attr('for', `selectSub_${idx}`)
-        })
+        nodeToRemove.remove()
     }
 
   var error = document.createElement("p");
@@ -331,3 +322,19 @@ $('#modal_substitution_isOneDay:checkbox').change(function(){
   }
 })
 
+/* Listen for change to modal body dom elements */
+
+$('div.modal-body').on("DOMNodeRemoved", function(e){
+    function resetIndexes() {
+      $('.form-group.substitution-group').each(function(i,el){
+        $(el).attr('id', i)
+        $('select.form-control.sub-select', el).attr('id',`selectSub_${i}`)
+        $('label.control-label', el).attr('for', `selectSub_${i}`)
+        $('button.removeSubstitution', el).attr('id', i)
+        $('p.text-danger', el).attr('id', `errorSub_${i}`)
+      })
+    }
+    setTimeout(() => {
+      resetIndexes()
+    }, 1000);
+});

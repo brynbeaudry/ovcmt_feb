@@ -10,7 +10,7 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                             {{ csrf_field() }}
 
-                            <img class="logo" src="/images/logo_ovcmt.png"><br>
+                            <img class="logo" src="http://www.ovcmt.com/files/599460fa-dbe0-448e-b29f-4122d8b0b5a8.png"><br>
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
