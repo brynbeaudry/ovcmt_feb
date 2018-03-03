@@ -325,12 +325,23 @@ $('#modal_substitution_isOneDay:checkbox').change(function(){
 /* Listen for change to modal body dom elements */
 
 $('div.modal-body').on("DOMNodeRemoved", function(e){
+
     function resetIndexes() {
       $('.form-group.substitution-group').each(function(i,el){
         $(el).attr('id', i)
         $('select.form-control.sub-select', el).attr('id',`selectSub_${i}`)
         $('label.control-label', el).attr('for', `selectSub_${i}`)
         $('button.removeSubstitution', el).attr('id', i)
+        $('button.removeSubstitution', el).click(function() {
+          /* Act on the event */
+            let id = i
+            console.log(`In remove Substitution, removing index ${id}`);
+            /* Remove the substitution select div from the modal's dom */
+            let nodeToRemove = $(`#${id}.form-group.substitution-group`)
+            /* Remove the actual substitution information from the courses to sub */
+            coursesToSub.splice(id, 1)
+            nodeToRemove.remove()
+        })
         $('p.text-danger', el).attr('id', `errorSub_${i}`)
       })
     }
