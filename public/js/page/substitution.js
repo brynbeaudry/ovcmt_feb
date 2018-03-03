@@ -331,10 +331,11 @@ $('div.modal-body').on("DOMNodeRemoved", function(e){
         $(el).attr('id', i)
         $('select.form-control.sub-select', el).attr('id',`selectSub_${i}`)
         $('label.control-label', el).attr('for', `selectSub_${i}`)
+        $('button.removeSubstitution', el).prop('onclick',null).off('click');
         $('button.removeSubstitution', el).attr('id', i)
         $('button.removeSubstitution', el).click(function() {
           /* Act on the event */
-            let id = i
+            let id = $(this).attr('id')
             console.log(`In remove Substitution, removing index ${id}`);
             /* Remove the substitution select div from the modal's dom */
             let nodeToRemove = $(`#${id}.form-group.substitution-group`)
