@@ -86,6 +86,7 @@ function createSubstituteDropDown(el){
   */
 
   var instructor_type = (el.ta_id !== undefined)? "TA" : "Instructor";
+  var instructor_id = (el.ta_id !== undefined)? el.ta_id : el.instructor_id
   var parent = document.getElementById("sub-modal-body");
 
   console.log($(parent).data('crsindex'));
@@ -148,7 +149,7 @@ function createSubstituteDropDown(el){
   substitution.appendChild(error);
 
   //ajax call
-  var substitutions = getAvailableReplacements(el.instructor_id, el.cdate, instructor_type, el.course_id, crsindex);
+  var substitutions = getAvailableReplacements(instructor_id, el.cdate, instructor_type, el.course_id, crsindex);
 
   substitutions.done(function(data){
     //iterate over the objects reutnred from the controller
