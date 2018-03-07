@@ -12,19 +12,28 @@ use App\Substitution;
 class SubstitutionController extends Controller
 {
       private function queryOfferingsByInstructorByDateRange($start_date,$end_date, $instructor_id){
-        return DB::table('rooms_by_days AS rbd')
+        $instructor_offerings = DB::table('rooms_by_days AS rbd')
           ->join('course_offerings AS co', function($join){
               $join->on('rbd.am_crn', '=', 'co.crn')->orOn('rbd.pm_crn', '=', 'co.crn');
             })
-          ->where('co.instructor_id','=', "$instructor_id")
-          ->whereBetween('rbd.cdate', array($start_date, $end_date))
-          /*make is work for tas aswell, using OR*/
-          ->orWhere('co.ta_id','=', "$instructor_id")
+          ->where('co.instructor_id','=', $instructor_id)
           ->whereBetween('rbd.cdate', array($start_date, $end_date))
           /* It's possible you may want all the columns from rooms_by_days, so you can see if you've already made a substitution for that timeslot */
           ->select('co.*', 'rbd.*')
           ->orderBy('co.crn')
           ->get();
+        $ta_offerings = DB::table('rooms_by_days AS rbd')
+          ->join('course_offerings AS co', function($join){
+              $join->on('rbd.am_crn', '=', 'co.crn')->orOn('rbd.pm_crn', '=', 'co.crn');
+            })
+          ->where('co.ta_id','=', $instructor_id)
+          ->whereBetween('rbd.cdate', array($start_date, $end_date))
+          /*make is work for tas aswell, using OR*/
+          ->select('co.*', 'rbd.*')
+          ->orderBy('co.crn')
+          ->get();
+        $result = $instructor_offerings->merge($ta_offerings);
+        return $result;
       }
 
       /*cdtae is a collection of key vals where the date is the key and the am/pm is the val*/
@@ -37,7 +46,8 @@ class SubstitutionController extends Controller
         /*Needs to be fixed to take Substitutes and TAs into account*/
 
         //make the condition for checking availablility doring the date and slot
-        foreach ($cdate as $date => $slot) {
+        foreach ($cdate as $dateslot) {
+          list($date, $slot) = explode(",", $dateslot);
           $carbon_date = Carbon::createFromFormat('Y-m-d', $date, 'America/Vancouver');
           $day = strtolower($carbon_date->format('l'));
           if($day== 'thursday'){
@@ -137,8 +147,9 @@ class SubstitutionController extends Controller
             //look at all the rooms for those days to be subsitututed, and see if the available instructor is teaching
             foreach ($rooms_by_days as $room) {
               //if this room by days matches a day that will be missed, but the course offering entry does't apply to the timeslot, then its irrelevant, so skip it
-              if(($cdate[$room->cdate] == 'AM' && $room->crn != $room->am_crn) || ($cdate[$room->cdate] == 'PM' && $room->crn != $room->pm_crn)){
-                  continue;
+              //if(($cdate[$room->cdate] == 'AM' && $room->crn != $room->am_crn) || ($cdate[$room->cdate] == 'PM' && $room->crn != $room->pm_crn)){
+              if((in_array("$room->cdate,AM", $cdate) && $room->crn != $room->am_crn) || (in_array("$room->cdate,PM", $cdate) && $room->crn != $room->pm_crn)){
+                continue;
               }else{
                   //if the entry is relevent to the date and time, and the instructor is teaching during this time, then remove the instructor from the list of teachers who could replace.
                   if($room->instructor_id == $instructor->instructor_id || $room->ta_id == $instructor->instructor_id){
@@ -220,9 +231,9 @@ class SubstitutionController extends Controller
             if(!$unique_offerings->contains('crn',$elem->crn)){
               $count++;
               $unique_offerings->push($elem);
-              $unique_offerings->get($count)->cdate = collect([$elem->cdate => $time_slot ]);
+              $unique_offerings->get($count)->cdate = collect(["$elem->cdate,$time_slot"]);
             }else{
-                $unique_offerings->get($count)->cdate = $unique_offerings->get($count)->cdate->merge([$elem->cdate => $time_slot]);
+              $unique_offerings->get($count)->cdate->push("$elem->cdate,$time_slot");
             }
             //$first = false;
         }//end of processing all the courses
@@ -312,7 +323,8 @@ class SubstitutionController extends Controller
             }
 
             $sub_entry->save();
-            foreach ($sub['cdate'] as $date => $slot) {
+            foreach ($sub['cdate'] as $dateslot) {
+              list($date, $slot) = explode(",", $dateslot);
               if ($slot == 'PM') {
                 $column = 'pm_sub';
               } else if ($slot == 'AM') {
